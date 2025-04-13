@@ -21,6 +21,7 @@
     "@tanstack/react-router": "^1.115.0",
     "@tanstack/react-router-devtools": "^1.115.0",
     "@tanstack/react-start": "^1.115.1",
+    "framer-motion": "^12.6.5",
     "jsonwebtoken": "^9.0.2",
     "prisma": "^6.5.0",
     "react": "^19.1.0",

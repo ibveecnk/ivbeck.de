@@ -10,9 +10,11 @@ export function Auth({
   afterSubmit?: React.ReactNode;
 }) {
   return (
-    <div className="fixed inset-0 bg-white dark:bg-black flex items-start justify-center p-8">
-      <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-4">{actionText}</h1>
+    <div className="fixed inset-0 bg-gray-100 dark:bg-gray-800 flex items-start justify-center p-8 my-10">
+      <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg m-4 border border-gray-300 dark:border-gray-700">
+        <h1 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+          {actionText}
+        </h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -49,7 +51,7 @@ export function Auth({
           >
             {status === "pending" ? "..." : actionText}
           </button>
-          {afterSubmit ? afterSubmit : null}
+          {afterSubmit ? <div className="mt-4">{afterSubmit}</div> : null}
         </form>
       </div>
     </div>
