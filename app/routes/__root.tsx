@@ -13,6 +13,7 @@ import { useAppSession } from "~/utils/session";
 import { DefaultCatchBoundary } from "~/components/DefaultCatchBoundary";
 import appCss from "~/styles/app.css?url";
 import { seo } from "~/utils/seo";
+import { motion } from "framer-motion";
 
 const fetchUser = createServerFn({ method: "GET" }).handler(async () => {
   // for cookies to be secure we need to auth on the server
@@ -84,39 +85,36 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       <head>
         <HeadContent />
       </head>
-      <body>
-        <div className="p-2 flex gap-2 text-lg">
-          <Link
-            to="/"
-            activeProps={{
-              className: "font-bold",
-            }}
-            activeOptions={{ exact: true }}
-          >
-            Home
-          </Link>{" "}
-          <Link
-            to="/posts"
-            activeProps={{
-              className: "font-bold",
-            }}
-          >
-            Posts
-          </Link>
-          <div className="ml-auto">
-            {user ? (
-              <>
-                <span className="mr-2">{user.userName}</span>
-                <Link to="/logout">Logout</Link>
-              </>
-            ) : (
-              <Link to="/login">Login</Link>
-            )}
-          </div>
+      <body className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
+        <div className="p-4 bg-gray-800 text-white shadow-md fixed top-0 left-0 right-0 z-50">
+          <nav className="flex justify-between items-center">
+            <span className="font-semibold">Iven Beck</span>
+            <div className="flex space-x-6">
+              <Link
+                to="/"
+                activeProps={{
+                  className: "font-bold underline",
+                }}
+                activeOptions={{ exact: true }}
+                className="hover:opacity-80 transition"
+              >
+                Home
+              </Link>
+              <Link
+                to="/posts"
+                activeProps={{
+                  className: "font-bold underline",
+                }}
+                className="hover:opacity-80 transition"
+              >
+                Posts
+              </Link>
+            </div>
+          </nav>
         </div>
-        <hr />
-        {children}
-        <TanStackRouterDevtools position="bottom-right" />
+        <div className="flex-grow flex items-center justify-center py-10">
+          {children}
+        </div>
         <Scripts />
       </body>
     </html>
